@@ -57,7 +57,7 @@ app.controller('bespokenCtrl', ['$scope', '$sanitize', function ($scope) {
     if ($scope.keyCode == 32) {
       console.log("Keycode is spacebar");
       //$scope.final += "<br /><br />";
-      $scope.makeLinebreak = true;
+      $scope.$apply = function () {$scope.makeLinebreak = true;};
     }
   }
 
@@ -132,6 +132,7 @@ app.controller('bespokenCtrl', ['$scope', '$sanitize', function ($scope) {
     for (var i = event.resultIndex; i < event.results.length; ++i) {
       if ($scope.makeLinebreak) {
         final_transcript += "<br /><br /><br />";
+        $scope.apply ( function () { $scope.makeLinebreak = false; } );
       }
       if (event.results[i].isFinal) {
         final_transcript += event.results[i][0].transcript;
