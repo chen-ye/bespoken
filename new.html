@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+  <head>
+    <title>Test</title>
+  </head>
+  <body ng-controller="MyCtrl">
+    <h1>Hello {{ name }}</h1>
+    <button ng-click="startRecognition();"
+    ng-bind="start_stop_msg"></button>
+    <script type="text/javascript"
+    src="https://code.jquery.com/jquery-2.1.0.min.js"></script>
+    <script type="text/javascript"
+    src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.13/angular.min.js">
+    </script>
+    <script type="text/javascript">
+var myApp = angular.module('myApp',[]);
+
+//myApp.directive('myDirective', function() {});
+//myApp.factory('myService', function() {});
+
+function MyCtrl($scope) {
+    $scope.name = 'Superhero';
+    $scope.start_stop_msg = "Start";
+    var ignore_onend;
+    var recognition = new webkitSpeechRecognition();
+    var recognizing = false;
+    recognition.continuous = true;
+    recognition.interimResults = true;
+    recognition.onstart = function () {
+        recognizing = true;
+        $scope.start_stop_message = "Recording...";
+    };
+    recognition.onend = function () {
+        $scope.start_stop_message = "Start";
+    };
+    recognition.onerror = function (event) {
+          window.alert("An error has happened." +
+                       event.error);
+          ignore_onend = true;
+    };
+    recognition.onresult = function (event) {
+         for (var i = event.resultIndex;
+              i < event.results.length;
+              ++i)
+         {
+             if (event.results[i].isFinal) {
+                  final_transcript += 
+                      event.results[i][0].transcript;
+             }
+             else {
+                 interim_transcript += 
+                       event.results[i][0].transcript;
+             }
+         }
+        $scope.$apply( function () {
+            $scope.final = final_transcript;
+        });
+        $scope.$apply ( function () {
+            $scope.interim = interim_transcript;
+        });
+    };
+  $scope.startRecognition = function () {
+    if (recognizing) {
+      recognition.stop();
+      return;
+    }
+    recognition.start();
+  };
+}
+    </script>
+  </body>
+</html>
