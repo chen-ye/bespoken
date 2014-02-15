@@ -44,9 +44,11 @@ controllers.controller('bespokenSpeech', ['$scope', function($scope)  {
     recognition.onresult = function (event) {
         console.log("Retrieved result");
         console.log(event);
+        var data;
         for (var i = event.resultIndex; i < event.results.length; ++i) {
-            setData(event.results[i][0].transcript);
+            data += event.results[i][0].transcript;
         }
+        $scope.data = data;
     };
 
     recognition.onaudiostart = function (event) {
