@@ -68,18 +68,19 @@ function MyCtrl($scope) {
           ignore_onend = true;
     };
     recognition.onresult = function (event) {
-         interim_transcript += "---BEGIN---";
          for (var i = event.resultIndex;
               i < event.results.length;
               ++i)
          {
-             if (event.results[i].isFinal) {
-                  final_transcript += 
-                      event.results[i][0].transcript;
-             }
-             else {
-                 interim_transcript += 
+             if (!event.results[i].isFinal) {
+                 new_transcript =  
                        event.results[i][0].transcript;
+                  if (new_transcript.length >= interim_transcript) {
+                    interim_transcript = new_transcript;
+                  }
+                  else {
+                    interim_transcript += "---BREAK---" + new_transcript;
+                  }
              }
          }
         $scope.$apply( function () {
