@@ -187,7 +187,7 @@ function updateCountry() {
   select_dialect.style.visibility = list[1].length == 1 ? 'hidden' : 'visible';
 }
 
-var create_email = false;
+// var create_email = false;
 var final_transcript = '';
 var recognizing = false;
 var ignore_onend;
@@ -243,11 +243,11 @@ if (!('webkitSpeechRecognition' in window)) {
       var range = document.createRange();
       range.selectNode(document.getElementById('final_span'));
       window.getSelection().addRange(range);
-    }
+    } /*
     if (create_email) {
       create_email = false;
       createEmail();
-    }
+    } */
   };
 
   recognition.onresult = function(event) {
@@ -274,10 +274,10 @@ if (!('webkitSpeechRecognition' in window)) {
   };
 }
 
-function upgrade() {
+/*function upgrade() {
   start_button.style.visibility = 'hidden';
   showInfo('info_upgrade');
-}
+} */
 
 var two_line = /\n\n/g;
 var one_line = /\n/g;
@@ -290,7 +290,7 @@ function capitalize(s) {
   return s.replace(first_char, function(m) { return m.toUpperCase(); });
 }
 
-function createEmail() {
+/*function createEmail() {
   var n = final_transcript.indexOf('\n');
   if (n < 0 || n >= 80) {
     n = 40 + final_transcript.substring(40).indexOf(' ');
@@ -322,7 +322,7 @@ function emailButton() {
   email_info.style.display = 'inline-block';
   showInfo('');
 }
-
+ */
 function startButton(event) {
   if (recognizing) {
     recognition.stop();
