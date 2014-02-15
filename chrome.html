@@ -15,7 +15,7 @@
   <body ng-controller="bespokenCtrl">
     <h1 ng-bind="data"></h1>
         <div id="div_start">
-          <button id="start_button" style="display: inline-block;"
+          <button id="start_button" ng-click="startButton()"style="display: inline-block;"
           ng-bind="start_button"></button>
         </div>
         <div id="results">
@@ -128,7 +128,7 @@ function capitalize(s) {
   return s.replace(first_char, function(m) { return m.toUpperCase(); });
 }
 
-function startButton(event) {
+  $scope.startButton = function () {
   if (recognizing) {
     recognition.stop();
     return;
