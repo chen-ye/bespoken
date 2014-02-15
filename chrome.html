@@ -130,15 +130,21 @@ app.controller('bespokenCtrl', ['$scope', '$sanitize', function ($scope) {
       return;
     }
     for (var i = event.resultIndex; i < event.results.length; ++i) {
+      console.log("Iteration wtih index "+i);
       if ($scope.makeLinebreak) {
+        console.log("Making a linebreak.");
         final_transcript += "<br /><br /><br />";
         $scope.$apply ( function () { $scope.makeLinebreak = false; } );
+        console.log("Are we frozen?");
       }
       if (event.results[i].isFinal) {
         final_transcript += event.results[i][0].transcript;
+        console.log("Adding a final transcript");
       } else {
         interim_transcript += event.results[i][0].transcript;
+        console.log("Adding an interim transcript");
       }
+      console.log("Iteration complete with index"+i);
     }
     final_transcript = capitalize(final_transcript);
     //final_span.innerHTML = linebreak(final_transcript);
