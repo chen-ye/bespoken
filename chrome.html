@@ -51,7 +51,9 @@ app.directive('bespokenKeyPress', function() {
 app.controller('bespokenCtrl', ['$scope', function ($scope) {
   $scope.keyPressed = function (e) {
     $scope.keyCode = e.which;
+    console.log("Keycode " + $scope.keyCode);
     if ($scope.keyCode == 32) {
+      console.log("Keycode is spacebar");
       $scope.startButton();
     }
   }
