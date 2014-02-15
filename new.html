@@ -68,7 +68,7 @@ function MyCtrl($scope) {
           ignore_onend = true;
     };
     recognition.onresult = function (event) {
-         interim_transcript = "";
+         interim_transcript += "---BEGIN---";
          for (var i = event.resultIndex;
               i < event.results.length;
               ++i)
