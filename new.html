@@ -4,6 +4,7 @@
     <title>Test</title>
   </head>
   <body ng-controller="MyCtrl">
+    <b-key-press></b-key-press>
     <h1>Hello {{ name }}</h1>
     <button ng-click="startRecognition();"
     ng-bind="start_stop_msg"></button>
@@ -21,14 +22,36 @@ var myApp = angular.module('myApp',[]);
 
 //myApp.directive('myDirective', function() {});
 //myApp.factory('myService', function() {});
+myApp.directive('bKeyPress', function() {
+  return {
+    restrict: 'E',
+    replace: true,
+    scope: true,
+    link:    function postLink(scope, iElement, iAttrs){
+      jQuery(document).on('keypress', function(e){
+         scope.$apply(scope.keyPressed(e));
+       });
+    }
+  };
+});
 
 function MyCtrl($scope) {
+    var final_transcript = "";
+    $scope.keyPressed = function (event) {
+      // Spacebar has been pressed
+      if (event.which == 32) {
+       console.log("Spacebar pressed");
+       final_transcript += "TESTTEST"; 
+      }
+      else {
+        console.log("Key pressed with code "+ event.which);
+      }
+    };
     $scope.name = 'Superhero';
     $scope.start_stop_msg = "Start";
     var ignore_onend;
     var recognition = new webkitSpeechRecognition();
     var recognizing = false;
-    var final_transcript = "";
     var interim_transcript = "";
     recognition.continuous = true;
     recognition.interimResults = true;
