@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html class="js consumer  chrome" lang="en" id="linux"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<html class="js consumer  chrome" lang="en" id="linux" ng-app="bespoken">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
      <style>
     .interim {
@@ -10,13 +12,29 @@
     padding-right: 3px;
     </style>
   </head>
-  <body>
+  <body ng-controller="bespokenCtrl">
+    <h1 ng-bind="data"></h1>
         <div id="div_start">
-          <button id="start_button" onclick="startButton(event)" style="display: inline-block;">Start</button>
+          <button id="start_button" onclick="startButton(event)" style="display: inline-block;"
+          ng-bind="start_button">Start</button>
         </div>
         <div id="results">
           <span class="final" id="final_span"></span> <span class="interim" id="interim_span"></span>
         </div>
+  <script type="text/javascript"
+  src="https://code.jquery.com/jquery-2.1.0.min.js"></script>
+  <script type="text/javascript"
+  src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.13/angular.min.js">
+  </script>
+
+<script type="text/javascript">
+var app = angular.module('bespoken', []);
+
+app.controller('bespokenCtrl', ['$scope', function ($scope) {
+  $scope.data = "lol";
+}]);
+</script>
+
 <script>
 //showInfo('info_start');
 var final_transcript = '';
