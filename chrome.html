@@ -13,6 +13,8 @@
     </style>
   </head>
   <body ng-controller="bespokenCtrl">
+  <!-- This lets AngularJS track keypresses. -->
+  <bespoken-key-press></bespoken-key-press>
     <h1 ng-bind="data"></h1>
         <div id="div_start">
           <button id="start_button" ng-click="startButton()"style="display: inline-block;"
@@ -32,36 +34,56 @@
 <script type="text/javascript">
 var app = angular.module('bespoken', []);
 
+pp.directive('bespokenKeyPress', function() {
+  return {
+    restrict: 'E',
+    replace: true,
+    scope: true,
+    link:    function postLink(scope, iElement, iAttrs){
+      jQuery(document).on('keypress', function(e){
+         scope.$apply(scope.keyPressed(e));
+       });
+    }
+  };
+});
+ 
+
 app.controller('bespokenCtrl', ['$scope', function ($scope) {
+  $scope.keyPressed = function (e) {
+    $scope.keyCode = e.which;
+    if ($scope.keyCode == 32) {
+      $scope.startButton();
+    }
+  }
+
   $scope.data = "lol";
   $scope.start_button = "Start Recording";
-//showInfo('info_start');
-var final_transcript = '';
-var recognizing = false;
-var ignore_onend;
-var start_timestamp;
-if (!('webkitSpeechRecognition' in window)) {
-  upgrade();
-} else {
-  start_button.style.display = 'inline-block';
-  var recognition = new webkitSpeechRecognition();
-  recognition.continuous = true;
-  recognition.interimResults = true;
-
-  recognition.onstart = function() {
+  //showInfo('info_start');
+  var final_transcript = '';
+  var recognizing = false;
+  var ignore_onend;
+  var start_timestamp;
+  if (!('webkitSpeechRecognition' in window)) {
+    upgrade();
+  } else {
+    //start_button.style.display = 'inline-block';
+    var recognition = new webkitSpeechRecognition();
+    recognition.continuous = true;
+    recognition.interimResults = true;
+    recognition.onstart = function() {
     recognizing = true;
     // showInfo('info_speak_now');
-    start_button.innerHTML = 'Recording...';
+    $scope.start_button = 'Recording...';
   };
 
   recognition.onerror = function(event) {
     if (event.error == 'no-speech') {
-      start_button.innerHTML = 'Record';
+      $scope.start_button = 'Record';
       //showInfo('info_no_speech');
       ignore_onend = true;
     }
     if (event.error == 'audio-capture') {
-      start_button.innerHTML = 'Record';
+      $scope.start_button = 'Record';
       //showInfo('info_no_microphone');
       ignore_onend = true;
     }
@@ -80,7 +102,7 @@ if (!('webkitSpeechRecognition' in window)) {
     if (ignore_onend) {
       return;
     }
-    start_button.innerHTML = 'Record';
+    $scope.start_button = 'Record';
     if (!final_transcript) {
       //showInfo('info_start');
       return;
@@ -131,15 +153,18 @@ function capitalize(s) {
   $scope.startButton = function () {
   if (recognizing) {
     recognition.stop();
+    $scope.final = "<br /><br />";
     return;
   }
   final_transcript = '';
   recognition.lang = 'en';
   recognition.start();
   ignore_onend = false;
-  final_span.innerHTML = '';
-  interim_span.innerHTML = '';
-  start_button.innerHTML = 'Not Yet Recording';
+  //final_span.innerHTML = '';
+  //interim_span.innerHTML = '';
+  //$scope.final = '';
+  //$scope.interim = '';
+  $scope.start_button  = 'Not Yet Recording';
   //showInfo('info_allow');
   start_timestamp = event.timeStamp;
 }
