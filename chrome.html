@@ -96,33 +96,13 @@ a.c1 {font-weight: normal;}
         <div id="results">
           <span class="final" id="final_span"></span> <span class="interim" id="interim_span"></span>
         </div>
-        <div id="copy">
-          <button class="button" id="copy_button" onclick="copyButton()" style="display: inline-block;">Copy and Paste</button>
-          <div id="copy_info" style="display: none;">
-            <p>
-              Press Control-C to copy text.
-            </p>
-            <p>
-              (Command-C on Mac.)
-            </p>
-          </div><button class="button" id="email_button" onclick="emailButton()" style="display: inline-block;">Create
-          Email</button>
-          <div id="email_info" style="display: none;">
-            <p>
-              Text sent to default email application.
-            </p>
-            <p>
-              (See chrome://settings/handlers to change.)
-            </p>
-          </div>
-        </div>
         <div class="compact marquee" id="div_language">
           <select id="select_language" onchange="updateCountry()">
             <option value="0">Afrikaans</option><option value="1">Bahasa Indonesia</option><option value="2">Bahasa Melayu</option><option value="3">Català</option><option value="4">Čeština</option><option value="5">Deutsch</option><option value="6">English</option><option value="7">Español</option><option value="8">Euskara</option><option value="9">Français</option><option value="10">Galego</option><option value="11">Hrvatski</option><option value="12">IsiZulu</option><option value="13">Íslenska</option><option value="14">Italiano</option><option value="15">Magyar</option><option value="16">Nederlands</option><option value="17">Norsk bokmål</option><option value="18">Polski</option><option value="19">Português</option><option value="20">Română</option><option value="21">Slovenčina</option><option value="22">Suomi</option><option value="23">Svenska</option><option value="24">Türkçe</option><option value="25">български</option><option value="26">Pусский</option><option value="27">Српски</option><option value="28">한국어</option><option value="29">中文</option><option value="30">日本語</option><option value="31">Lingua latīna</option></select>&nbsp;&nbsp; <select id="select_dialect" style="visibility: visible;">
             <option value="en-AU">Australia</option><option value="en-CA">Canada</option><option value="en-IN">India</option><option value="en-NZ">New Zealand</option><option value="en-ZA">South Africa</option><option value="en-GB">United Kingdom</option><option value="en-US">United States</option></select>
         </div>
       </div>
-    </div><script src="./Chrome Browser_files/chrome.min.js">
+    </div><!-- <script src="./Chrome Browser_files/chrome.min.js">
 </script> <script>
 var chrmMenuBar = new chrm.ui.MenuBar();
       chrmMenuBar.decorate('nav');
@@ -151,7 +131,7 @@ var chrmMenuBar = new chrm.ui.MenuBar();
       doubleTracker.track();
     
       doubleTracker.trackClass('doubletrack', true);
-    </script> <script>
+    </script> --> <script>
 var langs =
 [['Afrikaans',       ['af-ZA']],
  ['Bahasa Indonesia',['id-ID']],
