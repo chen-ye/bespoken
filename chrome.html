@@ -19,7 +19,9 @@
           ng-bind="start_button"></button>
         </div>
         <div id="results">
-          <span class="final" id="final_span"></span> <span class="interim" id="interim_span"></span>
+          <span class="final" id="final_span"
+          ng-bind="final"></span> <span class="interim" id="interim_span"
+          ng-bind="interim"></span>
         </div>
   <script type="text/javascript"
   src="https://code.jquery.com/jquery-2.1.0.min.js"></script>
@@ -112,8 +114,10 @@ if (!('webkitSpeechRecognition' in window)) {
       }
     }
     final_transcript = capitalize(final_transcript);
-    final_span.innerHTML = linebreak(final_transcript);
-    interim_span.innerHTML = linebreak(interim_transcript);
+    //final_span.innerHTML = linebreak(final_transcript);
+    //interim_span.innerHTML = linebreak(interim_transcript);
+    $scope.final = linebreak(final_transcript);
+    $scope.interim = linebreak(interim_transcript);
   };
 }
 
