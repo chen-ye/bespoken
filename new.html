@@ -77,7 +77,7 @@ function MyCtrl($scope) {
                        event.results[i][0].transcript;
                   console.log("New transcript: "+ new_transcript);
                   console.log("Interim transcript: "+ interim_transcript);
-                  if (new_transcript.length >= interim_transcript) {
+                  if (new_transcript.length >= interim_transcript.length) {
                     interim_transcript = new_transcript;
                   }
                   else {
