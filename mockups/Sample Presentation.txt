@@ -1,6 +1,6 @@
 I'm Chen, this is Achal, and this is James.  We created Bespoken, an automated presentation tool.  We're using the google voice speech to text api, as well as a summarization service, to live generate presentation slides.  
 
-So picture a case where the presenter is just rambling on and on, about his grandmother for example.  His grandmother is great I'm sure, but she's not terribly important.  She has a purple sweater, and a purple heart.  She just fucking loves purple.  So as we present, we'll using Bespoken and a summarization service to condense down slides to points that are truly important.  
+So picture a case where the presenter is just rambling on and on, about his grandmother for example.  His grandmother is great I'm sure, but she's not terribly important.  She has a purple sweater, and a purple heart.  She just fucking loves purple.  So as we present, we'll be using Bespoken and a summarization service to condense down slides to points that are truly important.  
 
 Of course there's still a lot we'd like to work on.  For example, integrating different styles, pulling images from Flickr, using the Pebble as a control method, and a bunch of other things.  
 
