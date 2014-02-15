@@ -41,7 +41,7 @@ controllers.controller('bespokenSpeech', ['$scope', function($scope)  {
         console.log("Retrieved result");
         console.log(event);
         for (var i = event.resultIndex; i < event.results.length; ++i) {
-            $scope.data += event.results[i][0].transcript;
+            $scope.data = event.results[i][0].transcript;
         }
     };
 
