@@ -54,7 +54,7 @@ function MyCtrl($scope) {
     var recognizing = false;
     var interim_transcript = "";
     recognition.continuous = true;
-    recognition.interimResults = true;
+    recognition.interimResults = false;
     recognition.onstart = function () {
         recognizing = true;
         $scope.start_stop_message = "Recording...";
