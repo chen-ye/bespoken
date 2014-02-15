@@ -1,65 +1,18 @@
 <!DOCTYPE html>
 <html class="js consumer  chrome" lang="en" id="linux"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
-     <style> /*
-#info {
-    font-size: 20px;
-    }
-    #div_start {
-    float: right;
-    }
-    #headline {
-    text-decoration: none
-    }
-    #results {
-    font-size: 14px;
-    font-weight: bold;
-    border: 1px solid #ddd;
-    padding: 15px;
-    text-align: left;
-    min-height: 150px;
-    }
-    #start_button {
-    border: 0;
-    background-color:transparent;
-    padding: 0;
-    } */
+     <style>
     .interim {
     color: gray;
     }
     .final {
     color: black;
     padding-right: 3px;
-     } /*
-    .button {
-    display: none;
-    }
-    .marquee {
-    margin: 20px auto;
-    }
-
-    #buttons {
-    margin: 10px 0;
-    position: relative;
-    top: -50px;
-    }
-
-    #copy {
-    margin-top: 20px;
-    }
-
-    #copy > div {
-    display: none;
-    margin: 0 70px;
-    } */
     </style>
-    <!-- <style>
-a.c1 {font-weight: normal;}
-    </style  -->
   </head>
   <body>
         <div id="div_start">
-          <button id="start_button" onclick="startButton(event)" style="display: inline-block;"><img alt="Start" id="start_img" src="./Chrome Browser_files/mic.gif"></button>
+          <button id="start_button" onclick="startButton(event)" style="display: inline-block;">Start</button>
         </div>
         <div id="results">
           <span class="final" id="final_span"></span> <span class="interim" id="interim_span"></span>
@@ -81,17 +34,17 @@ if (!('webkitSpeechRecognition' in window)) {
   recognition.onstart = function() {
     recognizing = true;
     // showInfo('info_speak_now');
-    start_img.src = 'http://google.com/intl/en/chrome/assets/common/images/content/mic-animate.gif';
+    start_button.innerHTML = 'Recording...';
   };
 
   recognition.onerror = function(event) {
     if (event.error == 'no-speech') {
-      start_img.src = 'http://google.com/intl/en/chrome/assets/common/images/content/mic.gif';
+      start_button.innerHTML = 'Record';
       //showInfo('info_no_speech');
       ignore_onend = true;
     }
     if (event.error == 'audio-capture') {
-      start_img.src = 'http://google.com/intl/en/chrome/assets/common/images/content/mic.gif';
+      start_button.innerHTML = 'Record';
       //showInfo('info_no_microphone');
       ignore_onend = true;
     }
@@ -110,7 +63,7 @@ if (!('webkitSpeechRecognition' in window)) {
     if (ignore_onend) {
       return;
     }
-    start_img.src = 'http://google.com/intl/en/chrome/assets/common/images/content/mic.gif';
+    start_button.innerHTML = 'Record';
     if (!final_transcript) {
       //showInfo('info_start');
       return;
@@ -167,7 +120,7 @@ function startButton(event) {
   ignore_onend = false;
   final_span.innerHTML = '';
   interim_span.innerHTML = '';
-  start_img.src = 'http://google.com/intl/en/chrome/assets/common/images/content/mic-slash.gif';
+  start_button.innerHTML = 'Not Yet Recording';
   //showInfo('info_allow');
   start_timestamp = event.timeStamp;
 }
