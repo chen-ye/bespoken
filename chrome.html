@@ -22,7 +22,7 @@
         </div>
         <div id="results">
           <span class="final" id="final_span"
-          ng-bind="final"></span> <span class="interim" id="interim_span"
+          ng-bind-html="final"></span> <span class="interim" id="interim_span"
           ng-bind="interim"></span>
         </div>
   <script type="text/javascript"
@@ -54,7 +54,7 @@ app.controller('bespokenCtrl', ['$scope', function ($scope) {
     console.log("Keycode " + $scope.keyCode);
     if ($scope.keyCode == 32) {
       console.log("Keycode is spacebar");
-      $scope.startButton();
+      $scope.final += "<br /><br />";
     }
   }
 
