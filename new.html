@@ -78,9 +78,11 @@ function MyCtrl($scope) {
                   console.log("New transcript: "+ new_transcript);
                   console.log("Interim transcript: "+ interim_transcript);
                   if (new_transcript.length >= interim_transcript.length) {
+                    console.log("New transcript is bigger.");
                     interim_transcript = new_transcript;
                   }
                   else {
+                    console.log("Interim transcript is bigger.");
                     //interim_transcript += "---BREAK---" + new_transcript;
                   }
              }
