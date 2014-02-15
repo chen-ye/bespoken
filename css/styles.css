@@ -11,7 +11,11 @@ https://github.com/yui/pure/blob/master/LICENSE.md
 
 /*User Styles*/
 
-body {
+html, body, * {
+	font-family: 'Avenir Next', 'Avenir', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
 	font-family: 'Avenir Next', 'Avenir', sans-serif;
 }
 
