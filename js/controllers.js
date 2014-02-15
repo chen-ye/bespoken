@@ -48,7 +48,9 @@ controllers.controller('bespokenSpeech', ['$scope', function($scope)  {
         for (var i = event.resultIndex; i < event.results.length; ++i) {
             data += event.results[i][0].transcript;
         }
+        $scope.$apply = function () {
         $scope.data = data;
+        }
     };
 
     recognition.onaudiostart = function (event) {
