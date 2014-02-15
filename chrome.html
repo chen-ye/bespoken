@@ -268,9 +268,9 @@ if (!('webkitSpeechRecognition' in window)) {
     final_transcript = capitalize(final_transcript);
     final_span.innerHTML = linebreak(final_transcript);
     interim_span.innerHTML = linebreak(interim_transcript);
-    if (final_transcript || interim_transcript) {
+    /*if (final_transcript || interim_transcript) {
       showButtons('inline-block');
-    }
+    } */
   };
 }
 
@@ -336,7 +336,7 @@ function startButton(event) {
   interim_span.innerHTML = '';
   start_img.src = '/intl/en/chrome/assets/common/images/content/mic-slash.gif';
   showInfo('info_allow');
-  showButtons('none');
+  // showButtons('none');
   start_timestamp = event.timeStamp;
 }
 
@@ -354,6 +354,7 @@ function showInfo(s) {
 }
 
 var current_style;
+/*
 function showButtons(style) {
   if (style == current_style) {
     return;
@@ -363,7 +364,7 @@ function showButtons(style) {
   email_button.style.display = style;
   copy_info.style.display = 'none';
   email_info.style.display = 'none';
-}
+} */
     </script>
   
 </body></html>
