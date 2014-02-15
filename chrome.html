@@ -113,7 +113,7 @@ if (!('webkitSpeechRecognition' in window)) {
     //final_span.innerHTML = linebreak(final_transcript);
     //interim_span.innerHTML = linebreak(interim_transcript);
     $scope.$apply ( function () {$scope.final = linebreak(final_transcript)});
-    $scope.$apply ( function () { interim = linebreak(interim_transcript)});
+    $scope.$apply ( function () { $scope.interim = linebreak(interim_transcript)});
   };
 }
 
