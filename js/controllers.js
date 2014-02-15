@@ -40,7 +40,7 @@ controllers.controller('bespokenSpeech', ['$scope', function($scope)  {
     recognition.onresult = function (event) {
         console.log("Retrieved result");
         console.log(event);
-        $scope.data = event;
+        $scope.data += event.results[i][0].transcript;
     };
 
     recognition.onaudiostart = function (event) {
