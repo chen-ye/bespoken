@@ -30,9 +30,11 @@
   <script type="text/javascript"
   src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.13/angular.min.js">
   </script>
-
+  <script type="text/javascript"
+  src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.13/angular-sanitize.min.js">
+  </script>
 <script type="text/javascript">
-var app = angular.module('bespoken', []);
+var app = angular.module('bespoken', ['ngSanitize']);
 
 app.directive('bespokenKeyPress', function() {
   return {
@@ -48,7 +50,7 @@ app.directive('bespokenKeyPress', function() {
 });
  
 
-app.controller('bespokenCtrl', ['$scope', function ($scope) {
+app.controller('bespokenCtrl', ['$scope', '$sanitize', function ($scope) {
   $scope.keyPressed = function (e) {
     $scope.keyCode = e.which;
     console.log("Keycode " + $scope.keyCode);
