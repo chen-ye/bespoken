@@ -16,7 +16,7 @@
     <h1 ng-bind="data"></h1>
         <div id="div_start">
           <button id="start_button" onclick="startButton(event)" style="display: inline-block;"
-          ng-bind="start_button">Start</button>
+          ng-bind="start_button"></button>
         </div>
         <div id="results">
           <span class="final" id="final_span"></span> <span class="interim" id="interim_span"></span>
@@ -32,6 +32,7 @@ var app = angular.module('bespoken', []);
 
 app.controller('bespokenCtrl', ['$scope', function ($scope) {
   $scope.data = "lol";
+  $scope.start_button = "Start Recording";
 }]);
 </script>
 
