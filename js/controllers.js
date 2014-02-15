@@ -37,11 +37,15 @@ controllers.controller('bespokenSpeech', ['$scope', function($scope)  {
         window.alert("there has been an error");
     };
 
+    var setData = function (sentence) {
+        $scope.data = sentence;
+    }
+
     recognition.onresult = function (event) {
         console.log("Retrieved result");
         console.log(event);
         for (var i = event.resultIndex; i < event.results.length; ++i) {
-            $scope.data = event.results[i][0].transcript;
+            setData(event.results[i][0].transcript);
         }
     };
 
