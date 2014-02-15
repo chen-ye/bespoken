@@ -42,4 +42,32 @@ controllers.controller('bespokenSpeech', ['$scope', function($scope)  {
         console.log(event);
         $scope.data = event;
     };
+
+    recognition.onaudiostart = function (event) {
+        console.log("On audio start event fired.");
+    };
+
+    recognition.onsoundstart = function (event) {
+        console.log("on sound start event fired.");
+    };
+
+    recognition.onspeechstart = function (event) {
+        console.log("on speech start event fired.");
+    };
+
+    recognition.onspeechend = function (event) {
+        console.log("on speech end event fired.");
+    };
+
+    recognition.onsoundend = function (event) {
+        console.log("on sound end event fired");
+    };
+
+    recognition.onaudioend = function (event) {
+        console.log("on audio end event fired.");
+    };
+
+    recognition.onnomatch = function (event) {
+        console.log("on no match event fired");
+    };
 }]);
