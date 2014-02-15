@@ -25,9 +25,9 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .logo {
-	width: 600px;
+	width: 600px; 
 	height: 300px;
-	margin: 0 auto;
+	margin: 300 auto;
 	background-image: url('../assets/logo.svg');
 
 }
