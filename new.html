@@ -178,6 +178,8 @@ function MyCtrl($scope) {
   $scope.nextSlide = function () {
     console.log("Current slide ID: "+ $scope.currentSlide);
     console.log("Length of slide deck: "+ $scope.slides.length);
+    console.log("Slide deck printout");
+    console.log($scope.slides);
     if ($scope.currentSlide < $scope.slides.length - 1) {
       $scope.slides[$scope.currentSlide] = $scope.bullets;
       $scope.currentSlide++;
@@ -199,6 +201,8 @@ function MyCtrl($scope) {
   $scope.previousSlide = function () {
     console.log("Current slide ID: "+ $scope.currentSlide);
     console.log("Length of slide deck: "+ $scope.slides.length);
+    console.log("Slide deck printout");
+    console.log($scope.slides);
     if ($scope.currentSlide >= 0) {
 
     }
