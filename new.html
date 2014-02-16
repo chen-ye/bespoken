@@ -191,9 +191,6 @@ function MyCtrl($scope) {
       $scope.slides.push([]);
       $scope.bullets = $scope.slides[$scope.currentSlide];
     }
-    /* $scope.currentSlide > $scope.slides.length - 1
-     * This means that the current slide variable is at a nonexistent
-     * indice. */
     else {
       $scope.errorMessage = "An error happened when moving to the next slide."
     }
@@ -204,7 +201,9 @@ function MyCtrl($scope) {
     console.log("Slide deck printout");
     console.log($scope.slides);
     if ($scope.currentSlide >= 0) {
-
+      $scope.slides[$scope.currentSlide] = $scope.bullets;
+      $scope.currentSlide--;
+      $scope.bullets - $scope.slides[$currentSlide];
     }
     /* Less than zero? These couldn't possibly exist. */
     else {
