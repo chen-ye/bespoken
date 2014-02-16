@@ -41,8 +41,6 @@ function MyCtrl($scope) {
       // Spacebar has been pressed
       if (event.which == 32) {
        console.log("Spacebar pressed");
-       $scope.final = $scope.interim+"------";
-       $scope.interim = ''; 
       }
       else {
         console.log("Key pressed with code "+ event.which);
@@ -73,18 +71,12 @@ function MyCtrl($scope) {
               i < event.results.length;
               ++i)
          {
-             if (!event.results[i].isFinal) {
-                 new_transcript =  
+             if (event.results[i].isFinal) {
+                 final_transcript =  
                        event.results[i][0].transcript;
-                  console.log("New transcript: "+ new_transcript);
-                  console.log("Interim transcript: "+ interim_transcript);
-                  if (new_transcript.length >= interim_transcript.length) {
-                    console.log("New transcript is bigger.");
-                    interim_transcript = new_transcript;
                   }
-                  else {
-                    console.log("Interim transcript is bigger.");
-                    //interim_transcript += "---BREAK---" + new_transcript;
+             else {
+                    interim_transcript = event.results[i][0].transcript;
                   }
              }
          }
