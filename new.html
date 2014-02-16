@@ -77,9 +77,9 @@ function MyCtrl($scope) {
                   }
              else {
                     interim_transcript = event.results[i][0].transcript;
-                  }
              }
          }
+         
         $scope.$apply( function () {
             $scope.final = final_transcript;
         });
