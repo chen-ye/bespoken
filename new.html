@@ -49,6 +49,7 @@ myApp.directive('bKeyPress', function() {
 });
 
 function MyCtrl($scope) {
+    $scope.slides = []
     var final_transcript = "";
     $scope.keyPressed = function (event) {
       // Spacebar has been pressed
