@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html class="js consumer  chrome" lang="en" id="linux" ng-app="bespoken">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" />
+    <meta charset="utf-8">
+     <style>
+    .interim {
+    color: gray;
+    }
+    .final {
+    color: black;
+    padding-right: 3px;
+    </style>
+  </head>
+  <body ng-controller="bespokenCtrl">
+  <!-- This lets AngularJS track keypresses. -->
+  <bespoken-key-press></bespoken-key-press>
+        <div id="div_start">
+          <button id="start_button" ng-click="startButton()"style="display: inline-block;"
+          ng-bind="start_button"></button>
+        </div>
+        <div class="well">
+          <span class="final" id="final_span"
+          ng-bind-html="final"></span> <span class="interim" id="interim_span"
+          ng-bind="interim"></span>
+        </div>
+  <script type="text/javascript"
+  src="https://code.jquery.com/jquery-2.1.0.min.js"></script>
+  <script type="text/javascript"
+  src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.13/angular.min.js">
+  </script>
+  <script type="text/javascript"
+  src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.13/angular-sanitize.min.js">
+  </script>
+<script type="text/javascript">
+var app = angular.module('bespoken', ['ngSanitize']);
+
+app.directive('bespokenKeyPress', function() {
+  return {
+    restrict: 'E',
+    replace: true,
+    scope: true,
+    link:    function postLink(scope, iElement, iAttrs){
+      jQuery(document).on('keypress', function(e){
+         scope.$apply(scope.keyPressed(e));
+       });
+    }
+  };
+});
+ 
+
+app.controller('bespokenCtrl', ['$scope', '$sanitize', function ($scope) {
+  $scope.keyPressed = function (e) {
+    $scope.keyCode = e.which;
+    console.log("Keycode " + $scope.keyCode);
+    if ($scope.keyCode == 32) {
+      console.log("Keycode is spacebar");
+      //$scope.final += "<br /><br />";
+      $scope.$apply = function () {$scope.makeLinebreak = true;};
+    }
+  }
+
+  $scope.data = "lol";
+  $scope.start_button = "Start Recording";
+  //showInfo('info_start');
+  var final_transcript = '';
+  var recognizing = false;
+  var ignore_onend;
+  var start_timestamp;
+  if (!('webkitSpeechRecognition' in window)) {
+    upgrade();
+  } else {
+    //start_button.style.display = 'inline-block';
+    var recognition = new webkitSpeechRecognition();
+    recognition.continuous = true;
+    recognition.interimResults = true;
+    recognition.onstart = function() {
+    recognizing = true;
+    // showInfo('info_speak_now');
+    $scope.start_button = 'Recording...';
+  };
+
+  recognition.onerror = function(event) {
+    if (event.error == 'no-speech') {
+      $scope.start_button = 'Record';
+      //showInfo('info_no_speech');
+      ignore_onend = true;
+    }
+    if (event.error == 'audio-capture') {
+      $scope.start_button = 'Record';
+      //showInfo('info_no_microphone');
+      ignore_onend = true;
+    }
+    if (event.error == 'not-allowed') {
+      if (event.timeStamp - start_timestamp < 100) {
+        //showInfo('info_blocked');
+      } else {
+        //showInfo('info_denied');
+      }
+      ignore_onend = true;
+    }
+  };
+
+  recognition.onend = function() {
+    recognizing = false;
+    if (ignore_onend) {
+      return;
+    }
+    $scope.start_button = 'Record';
+    if (!final_transcript) {
+      //showInfo('info_start');
+      return;
+    }
+    //showInfo('');
+    if (window.getSelection) {
+      window.getSelection().removeAllRanges();
+      var range = document.createRange();
+      range.selectNode(document.getElementById('final_span'));
+      window.getSelection().addRange(range);
+    } 
+  };
+
+  recognition.onresult = function(event) {
+    var interim_transcript = '';
+    if (typeof(event.results) == 'undefined') {
+      recognition.onend = null;
+      recognition.stop();
+      upgrade();
+      return;
+    }
+    for (var i = event.resultIndex; i < event.results.length; ++i) {
+      console.log("Iteration wtih index "+i);
+      if ($scope.makeLinebreak) {
+        console.log("Making a linebreak.");
+        final_transcript += "FUCK FUCK FUCK";
+        $scope.$apply ( function () { $scope.makeLinebreak = false; } );
+        console.log("Are we frozen?");
+      }
+      if (event.results[i].isFinal) {
+        final_transcript += event.results[i][0].transcript;
+        console.log("Adding a final transcript");
+      } else {
+        interim_transcript += event.results[i][0].transcript;
+        console.log("Adding an interim transcript");
+      }
+      console.log("Iteration complete with index"+i);
+    }
+    final_transcript = capitalize(final_transcript);
+    //final_span.innerHTML = linebreak(final_transcript);
+    //interim_span.innerHTML = linebreak(interim_transcript);
+    $scope.$apply ( function () {$scope.final = linebreak(final_transcript)});
+    $scope.$apply ( function () { $scope.interim = linebreak(interim_transcript)});
+  };
+}
+
+var two_line = /\n\n/g;
+var one_line = /\n/g;
+function linebreak(s) {
+  return s.replace(two_line, '<p></p>').replace(one_line, '<br>');
+}
+
+var first_char = /\S/;
+function capitalize(s) {
+  return s.replace(first_char, function(m) { return m.toUpperCase(); });
+}
+
+  $scope.startButton = function () {
+  if (recognizing) {
+    recognition.stop();
+    $scope.final = "<br /><br />";
+    return;
+  }
+  final_transcript = '';
+  recognition.lang = 'en';
+  recognition.start();
+  ignore_onend = false;
+  //final_span.innerHTML = '';
+  //interim_span.innerHTML = '';
+  //$scope.final = '';
+  //$scope.interim = '';
+  $scope.start_button  = 'Not Yet Recording';
+  //showInfo('info_allow');
+  start_timestamp = event.timeStamp;
+}
+
+}]);
+    </script>
+</body></html>

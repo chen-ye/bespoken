@@ -82,7 +82,7 @@ function MyCtrl($scope) {
     $scope.start_stop_msg = "Start";
     var ignore_onend;
     var recognition = new webkitSpeechRecognition();
-    var $scope.recognizing = false;
+    $scope.recognizing = false;
     var interim_transcript = "";
     recognition.continuous = true;
     recognition.interimResults = true;
