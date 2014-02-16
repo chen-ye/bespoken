@@ -13,8 +13,7 @@
     </style>
   </head>
   <body ng-controller="MyCtrl">
-    <b-key-press></b-key-press>
-    <h1>Hello {{ name }}</h1>
+    <b-key-press></b-key-press>    
     <button ng-click="startStopRecognition();"
     ng-bind="start_stop_msg"></button>
     <div>
@@ -31,6 +30,17 @@
     src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.13/angular.min.js">
     </script>
     <script type="text/javascript">
+var speech_error_types = {
+  "info_start": "Hit the space bar and begin speaking for as long as you like.",
+  "info_speak_now": "Speak now",
+  "info_no_speech": "No speech was detected. You may have to adjust your microphone settings.",
+  "info_no_microphone": "No microphone was found. Ensure that a microphone is installed and configured correctly.",
+  "info_allow": "Click the 'Allow' button to allow access to your microphone",
+  "info_denied": "Permission to use microphone was denied",
+  "info_blocked": "Permission to use microphone is blocked. To change this, go to chrome://settings/contentExceptions#media-stream",
+  "info_upgrade": "The web speech API is not supported by your browser. Please try the latest version of Google Chrome." 
+}
+
 var myApp = angular.module('myApp',[]);
 
 //myApp.directive('myDirective', function() {});
