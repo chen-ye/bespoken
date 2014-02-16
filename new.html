@@ -176,6 +176,8 @@ function MyCtrl($scope) {
   /* Go to the next slide if it exists, or create a new slide
     * if it does not exist. */
   $scope.nextSlide = function () {
+    console.log("Current slide ID: "+ $scope.currentSlide);
+    console.log("Length of slide deck: "+ $scope.slides.length);
     if ($scope.currentSlide < $scope.slides.length - 1) {
       $scope.slides[$scope.currentSlide] = $scope.bullets;
       $scope.currentSlide++;
@@ -192,19 +194,17 @@ function MyCtrl($scope) {
      * indice. */
     else {
       $scope.errorMessage = "An error happened when moving to the next slide."
-      console.log("Current slide ID: "+ $scope.currentSlide);
-      console.log("Length of slide deck: "+ $scope.slides.length);
     }
   };
   $scope.previousSlide = function () {
+    console.log("Current slide ID: "+ $scope.currentSlide);
+    console.log("Length of slide deck: "+ $scope.slides.length);
     if ($scope.currentSlide >= 0) {
 
     }
     /* Less than zero? These couldn't possibly exist. */
     else {
       $scope.errorMessage = "An error happened moving to the previous slide.";
-      console.log("Current slide ID: "+ $scope.currentSlide);
-      console.log("Length of slide deck: "+ $scope.slides.length);
     }
   };
 }
