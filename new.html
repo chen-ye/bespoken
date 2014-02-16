@@ -115,6 +115,10 @@ function MyCtrl($scope) {
         console.log("Right arrow pressed");
         $scope.nextSlide();
       }
+      else if (key == 84) {
+        console.log("T key pressed");
+        console.log($scope.slidesToText());
+      }
       else {
         console.log("Key pressed with code "+ event.which);
       }
@@ -227,6 +231,18 @@ function MyCtrl($scope) {
         $scope.errorMessage = "An error happened moving to the previous slide.";
       }
     }
+  };
+  $scope.slidesToText = function () {
+    var output = "";
+    for (var i = 0; i < $scope.slides.length; i++) {
+      var num = i + 1;
+      output += "---------- Slide "+num+" ----------\n";
+      for (var j = 0; j < $scope.slides[i].length; j++) {
+        output += "  - " + $scope.slides[i][j]+"\n\n"
+      }
+      output += "\n\n\n\n";
+    }
+    return output;
   };
 }
     </script>
