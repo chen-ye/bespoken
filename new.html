@@ -108,7 +108,10 @@ function MyCtrl($scope) {
       recognition.stop();
       $scope.start_stop_msg = "Start";
       recognizing = false;
-      $scope.slides.push($scope.final + $scope.interim);
+      var slide = $scope.final + $scope.interim;
+      if ($.trim(slide) != '') {
+        $scope.slides.push($scope.final + $scope.interim);
+      }
       $scope.final = "";
       $scope.interim = "";
       final_transcript = "";
