@@ -5,6 +5,16 @@
     <link rel="stylesheet"
     href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" />
     <style type="text/css">
+      html {
+        text-align:center;
+      }
+      body {
+        text-align:left;
+        width:80%;
+        margin-left:auto;
+        margin-right:auto;
+        font-size:30px;
+      }
       .final {
         font-weight:bold;
       }
@@ -16,8 +26,8 @@
   </head>
   <body ng-controller="MyCtrl">
     <b-key-press></b-key-press>    
-    <button ng-click="startStopRecognition();"
-    ng-bind="start_stop_msg"></button>
+<!--    <button ng-click="startStopRecognition();"
+    ng-bind="start_stop_msg"></button> -->
 
     <div class="alert alert-danger" ng-if="errorMessage">
       {{ errorMessage }}
