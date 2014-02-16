@@ -24,16 +24,11 @@
     </div>
 
     <div class="well">
-      <span class="final" ng-show="recognizing" ng-bind="final"></span>
-      <span class="interim" ng-show="recognizing" ng-bind="interim"></span>
+      <span class="final" ng-bind="final"></span>
+      <span class="interim" ng-bind="interim"></span>
     </div>
     <ul ng-repeat="slide in slides">
-      <li>{{ slide }}
-        <span ng-if="$last && recognizing">
-          <span class="final" ng-bind="final"></span>
-          <span class="interim" ng-bind="interim"></span>
-        </span>
-      </li>
+      <li>{{ slide }}</li>
     </ul>
     </table>
     <script type="text/javascript"
@@ -71,7 +66,7 @@ myApp.directive('bKeyPress', function() {
 });
 
 function MyCtrl($scope) {
-    $scope.slides = [""];
+    $scope.slides = []
     var final_transcript = "";
     $scope.keyPressed = function (event) {
       // Spacebar has been pressed
@@ -87,12 +82,12 @@ function MyCtrl($scope) {
     $scope.start_stop_msg = "Start";
     var ignore_onend;
     var recognition = new webkitSpeechRecognition();
-    $scope.recognizing = false;
+    var recognizing = false;
     var interim_transcript = "";
     recognition.continuous = true;
     recognition.interimResults = true;
     recognition.onstart = function () {
-        $scope.recognizing = true;
+        recognizing = true;
         $scope.start_stop_message = "Recording...";
     };
     recognition.onend = function () {
@@ -126,15 +121,13 @@ function MyCtrl($scope) {
         });
     };
   $scope.startStopRecognition = function () {
-    if ($scope.recognizing) {
+    if (recognizing) {
       recognition.stop();
       $scope.start_stop_msg = "Start";
-      $scope.recognizing = false;
+      recognizing = false;
       var slide = $scope.final + $scope.interim;
       if ($.trim(slide) != '') {
-        $scope.slides[$scope.slides.length - 1]
-          $scope.final + $scope.interim;
-        $scope.slides.push("");
+        $scope.slides.push($scope.final + $scope.interim);
       }
       $scope.final = "";
       $scope.interim = "";
