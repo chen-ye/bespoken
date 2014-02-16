@@ -49,13 +49,14 @@
       Hit the <code>SPACE</code> key to start recording.
       Hit <code>SPACE</code> again to stop.
     </div>
+    <ul class="speech-points" ng-repeat="bullet in bullets">
+      <li>{{ bullet }}</li>
+    </ul>
     <div class="well" ng-show="recognizing">
       <span class="final" ng-bind="final"></span>
       <span class="interim" ng-bind="interim"></span>
     </div>
-    <ul class="speech-points" ng-repeat="bullet in bullets">
-      <li>{{ bullet }}</li>
-    </ul>
+
     </table>
     <script type="text/javascript"
     src="https://code.jquery.com/jquery-2.1.0.min.js"></script>
