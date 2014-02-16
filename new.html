@@ -167,15 +167,19 @@ function MyCtrl($scope) {
             $scope.interim = interim_transcript;
         });
     };
+
+  $scope.push_final_if_not_empty = function () {
+    var bullet = $scope.final + $scope.interim;
+    if ($.trim(bullet) != '') {
+      $scope.bullets.push($scope.final + $scope.interim);
+    }
+  };
   $scope.startStopRecognition = function () {
     if ($scope.recognizing) {
       recognition.stop();
       $scope.start_stop_msg = "Start";
       $scope.recognizing = false;
-      var bullet = $scope.final + $scope.interim;
-      if ($.trim(bullet) != '') {
-        $scope.bullets.push($scope.final + $scope.interim);
-      }
+      $scope.push_final_if_not_empty();
       $scope.final = "";
       $scope.interim = "";
       final_transcript = "";
@@ -236,6 +240,7 @@ function MyCtrl($scope) {
   };
   $scope.slidesToText = function () {
     var output = "";
+    $scope.push_final_if_not_empty();
     $scope.slides[$scope.currentSlide] = $scope.bullets;
     for (var i = 0; i < $scope.slides.length; i++) {
       var num = i + 1;
