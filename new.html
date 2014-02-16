@@ -18,7 +18,12 @@
     <b-key-press></b-key-press>    
     <button ng-click="startStopRecognition();"
     ng-bind="start_stop_msg"></button>
-    <div>
+
+    <div class="alert alert-danger" ng-if="errorMessage">
+      {{ errorMessage }}
+    </div>
+
+    <div class="well">
       <span class="final" ng-bind="final"></span>
       <span class="interim" ng-bind="interim"></span>
     </div>
