@@ -28,10 +28,13 @@
     <b-key-press></b-key-press>    
 <!--    <button ng-click="startStopRecognition();"
     ng-bind="start_stop_msg"></button> -->
-    <span class="glyphicon glyphicon-comment"
-    ng-if="recognizing"></span>
-    <span class="glyphicon glyphicon-pause"
-    ng-if="!recognizing"></span>
+    <div class="row">
+     <span class="glyphicon glyphicon-comment"
+     ng-if="recognizing"></span>
+     <span class="glyphicon glyphicon-pause"
+      ng-if="!recognizing"></span>
+     <span class="badge" ng-bind="currentSlide + 1"></span>
+    </div>
     <div class="alert alert-danger" ng-if="errorMessage">
       {{ errorMessage }}
     </div>
