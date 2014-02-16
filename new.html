@@ -205,7 +205,7 @@ function MyCtrl($scope) {
     console.log("Length of slide deck: "+ $scope.slides.length);
     console.log("Slide deck printout");
     console.log($scope.slides);
-    if (!$scope.recognizing && $scope.bullets.length > 0) {
+    if (!$scope.recognizing) {
       if ($scope.currentSlide > 0) {
         $scope.slides[$scope.currentSlide] = $scope.bullets;
         $scope.currentSlide--;
