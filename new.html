@@ -203,7 +203,7 @@ function MyCtrl($scope) {
     if ($scope.currentSlide >= 0) {
       $scope.slides[$scope.currentSlide] = $scope.bullets;
       $scope.currentSlide--;
-      $scope.bullets - $scope.slides[$currentSlide];
+      $scope.bullets - $scope.slides[$scope.currentSlide];
     }
     /* Less than zero? These couldn't possibly exist. */
     else {
