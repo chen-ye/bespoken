@@ -115,6 +115,10 @@ function MyCtrl($scope) {
       interim_transcript = "";
       return;
     }
+    $scope.final = "";
+    $scope.interim = "";
+    final_transcript = "";
+    interim_transcript = "";
     recognition.start();
     $scope.start_stop_msg = "Recording... Click to stop.";
   };
