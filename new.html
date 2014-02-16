@@ -103,6 +103,7 @@ function MyCtrl($scope) {
     if (recognizing) {
       recognition.stop();
       $scope.start_stop_msg = "Start";
+      recognizing = false;
       return;
     }
     recognition.start();
