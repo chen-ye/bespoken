@@ -233,6 +233,7 @@ function MyCtrl($scope) {
   };
   $scope.slidesToText = function () {
     var output = "";
+    $scope.slides[$scope.currentSlide] = $scope.bullets;
     for (var i = 0; i < $scope.slides.length; i++) {
       var num = i + 1;
       output += "---------- Slide "+num+" ----------\n";
