@@ -52,9 +52,11 @@
     <ul class="speech-points" ng-repeat="bullet in bullets">
       <li>{{ bullet }}</li>
     </ul>
-    <ul class="speech-points">
-      <span class="final" ng-bind="final"></span>
-      <span class="interim" ng-bind="interim"></span>
+    <ul class="speech-points" ng-show="recognizing">
+      <li>
+        <span class="final" ng-bind="final"></span>
+        <span class="interim" ng-bind="interim"></span>
+      </li>
     </ul>
 
     </table>
