@@ -83,6 +83,7 @@ myApp.directive('bKeyPress', function() {
 
 function MyCtrl($scope) {
     $scope.introduction = true;
+    $scope.slides = [];
     $scope.bullets = []
     var final_transcript = "";
     $scope.keyPressed = function (event) {
@@ -90,6 +91,16 @@ function MyCtrl($scope) {
       if (event.which == 32) {
        console.log("Spacebar pressed");
        $scope.startStopRecognition();
+      }
+      // Left arrow has been pressed
+      else if (event.which == 37) {
+        console.log("Left arrow pressed");
+        $scope.previousSlide();
+      }
+      // Right arrow has been pressed
+      else if (event.which == 39) {
+        console.log("Right arrow pressed");
+        $scope.nextSlide();
       }
       else {
         console.log("Key pressed with code "+ event.which);
@@ -159,6 +170,38 @@ function MyCtrl($scope) {
     interim_transcript = "";
     recognition.start();
     $scope.start_stop_msg = "Recording... Click to stop.";
+  };
+  /* Go to the next slide if it exists, or create a new slide
+    * if it does not exist. */
+  $scope.nextSlide = function () {
+    if ($scope.currentSlide < $scope.slides.length - 1) {
+      $scope.slides[$scope.currentSlide] = $scope.bullets;
+      $scope.currentSlide++;
+      $scope.bullets = $scope.slides[$scope.currentSlide];
+    }
+    else if ($scope.currentSlide == $scope.slides.length - 1) {
+      $scope.slides[$scope.currentSlide] = $scope.bullets;
+      $scope.currentSlide++;
+      $scope.slides.push([]);
+      $scope.bullets = $scope.slides[$scope.currentSlide];
+    }
+    /* $scope.currentSlide > $scope.slides.length - 1
+     * This means that the current slide variable is at a nonexistent
+     * indice. */
+    else {
+      $scope.errorMessage = "An error happened when moving to the next slide."
+      console.log("Current slide ID: "+ $scope.currentSlide);
+    }
+  };
+  $scope.previousSlide = function () {
+    if ($scope.currentSlide >= 0) {
+
+    }
+    /* Less than zero? These couldn't possibly exist. */
+    else {
+      $scope.errorMessage = "An error happened moving to the previous slide.";
+      console.log("Current slide ID: "+ $scope.currentSlide);
+    }
   };
 }
     </script>
