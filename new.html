@@ -111,6 +111,8 @@ function MyCtrl($scope) {
       $scope.slides.push($scope.final + $scope.interim);
       $scope.final = "";
       $scope.interim = "";
+      final_transcript = "";
+      interim_transcript = "";
       return;
     }
     recognition.start();
