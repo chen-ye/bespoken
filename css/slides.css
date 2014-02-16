@@ -128,5 +128,6 @@ font-weight:bold;
 .badge {
 font-size:inherit;
 background-color:#333;
+border-radius:0;
 } 
 

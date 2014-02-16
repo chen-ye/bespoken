@@ -23,8 +23,10 @@
       {{ errorMessage }}
     </div>
     <div class="alert alert-info" ng-if="introduction">
-      Hit the <code>SPACE</code> key to start recording.
-      Hit <code>SPACE</code> again to stop.
+      Hit the <span class="label label-info">SPACE</span> key to start recording,
+      and again to stop. Hit the <span class="label label-info">.</span> key to
+      create a slide, and the <span class="label label-info">,</span> key to
+      go back a slide.
     </div>
     <ul class="speech-points" ng-repeat="bullet in bullets">
       <li>{{ bullet }}</li>
