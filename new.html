@@ -193,6 +193,7 @@ function MyCtrl($scope) {
     else {
       $scope.errorMessage = "An error happened when moving to the next slide."
       console.log("Current slide ID: "+ $scope.currentSlide);
+      console.log("Length of slide deck: "+ $scope.slides.length);
     }
   };
   $scope.previousSlide = function () {
@@ -203,6 +204,7 @@ function MyCtrl($scope) {
     else {
       $scope.errorMessage = "An error happened moving to the previous slide.";
       console.log("Current slide ID: "+ $scope.currentSlide);
+      console.log("Length of slide deck: "+ $scope.slides.length);
     }
   };
 }
