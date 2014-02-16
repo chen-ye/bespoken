@@ -88,17 +88,18 @@ function MyCtrl($scope) {
     var final_transcript = "";
     $scope.keyPressed = function (event) {
       // Spacebar has been pressed
-      if (event.which == 32) {
+      var key = event.which;
+      if (key == 32) {
        console.log("Spacebar pressed");
        $scope.startStopRecognition();
       }
       // Left arrow has been pressed
-      else if (event.which == 37) {
+      else if (key == 37) {
         console.log("Left arrow pressed");
         $scope.previousSlide();
       }
       // Right arrow has been pressed
-      else if (event.which == 39) {
+      else if (key == 39) {
         console.log("Right arrow pressed");
         $scope.nextSlide();
       }
