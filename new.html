@@ -200,10 +200,13 @@ function MyCtrl($scope) {
     console.log("Length of slide deck: "+ $scope.slides.length);
     console.log("Slide deck printout");
     console.log($scope.slides);
-    if ($scope.currentSlide >= 0) {
+    if ($scope.currentSlide > 0) {
       $scope.slides[$scope.currentSlide] = $scope.bullets;
       $scope.currentSlide--;
-      $scope.bullets - $scope.slides[$scope.currentSlide];
+      $scope.bullets = $scope.slides[$scope.currentSlide];
+    }
+    else if ($scope.currentSlide == 0){
+      // do nothing
     }
     /* Less than zero? These couldn't possibly exist. */
     else {
