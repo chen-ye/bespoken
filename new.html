@@ -104,8 +104,8 @@ function MyCtrl($scope) {
     recognition.continuous = true;
     recognition.interimResults = true;
     recognition.onstart = function () {
-        $scope.recognizing = true;
-        $scope.start_stop_message = "Recording...";
+        $scope.$apply ( function () { $scope.recognizing = true; });
+        //$scope.start_stop_message = "Recording...";
     };
     recognition.onend = function () {
         $scope.start_stop_message = "Start";
