@@ -132,4 +132,13 @@ border-radius:0;
 } 
 .label {
 border-radius:0;
+background-color:inherit;
+background-color:#333;
+text-transform:uppercase;
+}
+.alert {
+color:#333;
+background-color:inherit;
+border-radius:0;
+text-transform:lowercase;
 }

@@ -56,7 +56,7 @@ var speech_error_types = {
   "info_upgrade": "The web speech API is not supported by your browser. Please try the latest version of Google Chrome." 
 }
 
-var myApp = angular.module('myApp',);
+var myApp = angular.module('myApp');
 
 //myApp.directive('myDirective', function() {});
 //myApp.factory('myService', function() {});
@@ -73,7 +73,7 @@ myApp.directive('bKeyPress', function() {
   };
 });
 
-function MyCtrl($scope, $http) {
+function MyCtrl($scope) {
     $scope.introduction = true;
     $scope.slides = [[]];
     $scope.currentSlide = 0;
