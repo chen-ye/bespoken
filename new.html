@@ -142,9 +142,9 @@ function MyCtrl($scope) {
       recognition.stop();
       $scope.start_stop_msg = "Start";
       $scope.recognizing = false;
-      var slide = $scope.final + $scope.interim;
-      if ($.trim(slide) != '') {
-        $scope.slides.push($scope.final + $scope.interim);
+      var bullet = $scope.final + $scope.interim;
+      if ($.trim(bullet) != '') {
+        $scope.bullets.push($scope.final + $scope.interim);
       }
       $scope.final = "";
       $scope.interim = "";
