@@ -36,9 +36,9 @@
       Hit the <code>SPACE</code> key to start recording.
       Hit <code>SPACE</code> again to stop.
     </div>
-    <div class="well">
-      <span class="final" ng-show="recognizing" ng-bind="final"></span>
-      <span class="interim" ng-show="recognizing" ng-bind="interim"></span>
+    <div class="well" ng-show="recognizing">
+      <span class="final" ng-bind="final"></span>
+      <span class="interim" ng-bind="interim"></span>
     </div>
     <ul ng-repeat="slide in slides">
       <li>{{ slide }}</li>
