@@ -21,6 +21,9 @@
       <span class="final" ng-bind="final"></span>
       <span class="interim" ng-bind="interim"></span>
     </div>
+    <ul ng-repeat="slide in slides">
+      <li>{{ slide }}</li>
+    </ul>
     </table>
     <script type="text/javascript"
     src="https://code.jquery.com/jquery-2.1.0.min.js"></script>
@@ -104,6 +107,9 @@ function MyCtrl($scope) {
       recognition.stop();
       $scope.start_stop_msg = "Start";
       recognizing = false;
+      $scope.slides.push($scope.final + $scope.interim);
+      $scope.final = "";
+      $scope.interim = "";
       return;
     }
     recognition.start();
