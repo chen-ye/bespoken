@@ -32,7 +32,10 @@
     <div class="alert alert-danger" ng-if="errorMessage">
       {{ errorMessage }}
     </div>
-
+    <div class="alert alert-info" ng-if="introduction">
+      Hit the <code>SPACE</code> key to start recording.
+      Hit <code>SPACE</code> again to stop.
+    </div>
     <div class="well">
       <span class="final" ng-show="recognizing" ng-bind="final"></span>
       <span class="interim" ng-show="recognizing" ng-bind="interim"></span>
@@ -76,6 +79,7 @@ myApp.directive('bKeyPress', function() {
 });
 
 function MyCtrl($scope) {
+    $scope.introduction = true;
     $scope.slides = []
     var final_transcript = "";
     $scope.keyPressed = function (event) {
@@ -145,6 +149,7 @@ function MyCtrl($scope) {
       interim_transcript = "";
       return;
     }
+    $scope.introduction = false;
     $scope.final = "";
     $scope.interim = "";
     final_transcript = "";
