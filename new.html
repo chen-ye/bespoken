@@ -183,19 +183,21 @@ function MyCtrl($scope) {
     console.log("Length of slide deck: "+ $scope.slides.length);
     console.log("Slide deck printout");
     console.log($scope.slides);
-    if ($scope.currentSlide < $scope.slides.length - 1) {
-      $scope.slides[$scope.currentSlide] = $scope.bullets;
-      $scope.currentSlide++;
-      $scope.bullets = $scope.slides[$scope.currentSlide];
-    }
-    else if ($scope.currentSlide == $scope.slides.length - 1) {
-      $scope.slides[$scope.currentSlide] = $scope.bullets;
-      $scope.currentSlide++;
-      $scope.slides.push([]);
-      $scope.bullets = $scope.slides[$scope.currentSlide];
-    }
-    else {
-      $scope.errorMessage = "An error happened when moving to the next slide."
+    if (!$scope.recognizing && $scope.bullets.length > 0) {
+      if ($scope.currentSlide < $scope.slides.length - 1) {
+        $scope.slides[$scope.currentSlide] = $scope.bullets;
+        $scope.currentSlide++;
+        $scope.bullets = $scope.slides[$scope.currentSlide];
+      }
+      else if ($scope.currentSlide == $scope.slides.length - 1) {
+        $scope.slides[$scope.currentSlide] = $scope.bullets;
+        $scope.currentSlide++;
+        $scope.slides.push([]);
+        $scope.bullets = $scope.slides[$scope.currentSlide];
+      }
+      else {
+        $scope.errorMessage = "An error happened when moving to the next slide."
+      }
     }
   };
   $scope.previousSlide = function () {
@@ -203,17 +205,19 @@ function MyCtrl($scope) {
     console.log("Length of slide deck: "+ $scope.slides.length);
     console.log("Slide deck printout");
     console.log($scope.slides);
-    if ($scope.currentSlide > 0) {
-      $scope.slides[$scope.currentSlide] = $scope.bullets;
-      $scope.currentSlide--;
-      $scope.bullets = $scope.slides[$scope.currentSlide];
-    }
-    else if ($scope.currentSlide == 0){
-      // do nothing
-    }
-    /* Less than zero? These couldn't possibly exist. */
-    else {
-      $scope.errorMessage = "An error happened moving to the previous slide.";
+    if (!$scope.recognizing && $scope.bullets.length > 0) {
+      if ($scope.currentSlide > 0) {
+        $scope.slides[$scope.currentSlide] = $scope.bullets;
+        $scope.currentSlide--;
+        $scope.bullets = $scope.slides[$scope.currentSlide];
+      }
+      else if ($scope.currentSlide == 0){
+        // do nothing
+      }
+      /* Less than zero? These couldn't possibly exist. */
+      else {
+        $scope.errorMessage = "An error happened moving to the previous slide.";
+      }
     }
   };
 }
