@@ -28,7 +28,7 @@
       <span class="interim" ng-show="recognizing" ng-bind="interim"></span>
     </div>
     <ul ng-repeat="slide in slides">
-      <li>{{ slide }}
+      <li ng-show="slide != ''">{{ slide }}
         <span ng-if="$last && recognizing">
           <span class="final" ng-bind="final"></span>
           <span class="interim" ng-bind="interim"></span>
