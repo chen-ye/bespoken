@@ -91,9 +91,6 @@ function MyCtrl($scope) {
        console.log("Spacebar pressed");
        $scope.startStopRecognition();
       }
-      else if (event.which == 8) {
-        $scope.deleteRecognition();
-      }
       else {
         console.log("Key pressed with code "+ event.which);
       }
@@ -162,22 +159,6 @@ function MyCtrl($scope) {
     interim_transcript = "";
     recognition.start();
     $scope.start_stop_msg = "Recording... Click to stop.";
-  };
-  $scope.deleteRecognition = function () {
-    if ($scope.recognizing) {
-      recognition.stop();
-      $scope.start_stop_msg = "Start";
-      $scope.recognizing = false;
-      $scope.final = "";
-      $scope.interim = "";
-      final_transcript = "";
-      interim_transcript = "";
-      return;
-    }
-    else {
-      $scope.slides.pop();
-      return;
-    }
   };
 }
     </script>
