@@ -56,7 +56,7 @@ var speech_error_types = {
   "info_upgrade": "The web speech API is not supported by your browser. Please try the latest version of Google Chrome." 
 }
 
-var myApp = angular.module('myApp');
+var myApp = angular.module('myApp',[]);
 
 //myApp.directive('myDirective', function() {});
 //myApp.factory('myService', function() {});
@@ -95,10 +95,6 @@ function MyCtrl($scope) {
       else if (key == 46) {
         console.log("Right arrow pressed");
         $scope.nextSlide();
-      }
-      else if (key == 83) {
-        console.log("Attempting to send email");
-        $scope.make_this_post();
       }
       else if (key == 84) {
         console.log("T key pressed");
@@ -245,10 +241,7 @@ function MyCtrl($scope) {
       output += "\n\n\n\n";
     }
     return output;
-  }; /*
-  $scope.make_this_post = function () {
-    $http.post("http://bespoken.herokuapp.com/", {"notes", $scope.slidesToText()});
-  }; */
+  };
 }
     </script>
 <script>
