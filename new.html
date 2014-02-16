@@ -71,7 +71,7 @@ myApp.directive('bKeyPress', function() {
 });
 
 function MyCtrl($scope) {
-    $scope.slides = []
+    $scope.slides = [""];
     var final_transcript = "";
     $scope.keyPressed = function (event) {
       // Spacebar has been pressed
@@ -132,7 +132,9 @@ function MyCtrl($scope) {
       $scope.recognizing = false;
       var slide = $scope.final + $scope.interim;
       if ($.trim(slide) != '') {
-        $scope.slides.push($scope.final + $scope.interim);
+        $scope.slides[$scope.slides.length - 1]
+          scope.final + $scope.interim;
+        $scope.slides.push("");
       }
       $scope.final = "";
       $scope.interim = "";
